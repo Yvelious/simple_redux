@@ -10,9 +10,9 @@ if (typeof NODE_ENV === 'string' && NODE_ENV === 'development') {
 }
 
 const enhancer = compose(
-	...composeFuncList
+	...composeFuncList 
 );
 
 const store = createStore(reducer, {}, enhancer);
 
-export default store;
+export default store;    

@@ -4,7 +4,7 @@ export const API_HOST = 'http://import2l.test.weekly.api.auto-toyz.com';
 export const API_URI =  '/product-import/v1';
 
 export const API_REQUIRED_REQUEST_PARAMS = {
-	'client': 'web-tool'
+	'client': 'web-tool' 
 };
 
 export const API_REQUEST_JSON_HEADER = {
