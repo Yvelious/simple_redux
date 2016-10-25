@@ -1,22 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import store from '../store/index';
-import { Provider } from 'react-redux';
-import AppContainer from '../containers/AppContainer';
 
-class App extends Component {
-	static propTypes = {
-		children: PropTypes.object.isRequired
-	};
-	
-	render() {
+class Counter extends Component {
+	render () {
 		return (
-			<Provider store={store}>
-				<AppContainer>
-					{this.props.children}
-				</AppContainer>
-			</Provider>
+			<div>
+				test
+			</div>
 		);
 	}
 }
 
-export default App;
+export default Counter;

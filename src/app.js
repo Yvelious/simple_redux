@@ -1,4 +1,5 @@
+import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
-import routes from './routes/index';
+import App from './containers/App';
 
-render(routes, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
