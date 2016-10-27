@@ -1,18 +1,24 @@
-import { INIT, SUCCESS, START } from '../constants/index';
-import { Map } from 'immutable';
-const defaultState = Map({
-	count: 0
-});
+import { INCREMENT, DECREMENT } from '../constants/index';
+const defaultState = {
+	num: 0
+};
 
 export default (state = defaultState, action) => {
+
 	const { type } = action;
 
 	switch (type) {
-		case INIT + START:
-			return state.set('loading', true);
+		case INCREMENT:
+			return {
+				...state,
+				num: state.num + 1
+			};
 
-		case INIT + SUCCESS:
-			return state.set('loading', false);
+		case DECREMENT:
+			return {
+				...state,
+				num: state.num - 1
+			};
 	}
 
 	return state;
