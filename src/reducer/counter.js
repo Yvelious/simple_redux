@@ -3,6 +3,10 @@ const defaultState = {
 	num: 0
 };
 
+function checkValue (value) {
+	return value <= 0 ? 0 : value;
+}
+
 export default (state = defaultState, action) => {
 
 	const { type } = action;
@@ -16,10 +20,9 @@ export default (state = defaultState, action) => {
 			};
 
 		case DECREMENT: 
-
 			return {
 				...state,
-				num: state.num <=0 ? 0 : state.num - 1
+				num: checkValue(state.num - 1)
 			}
 	}
 
