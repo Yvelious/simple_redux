@@ -14,13 +14,20 @@ class Counter extends Component {
 		this.props.increment();
 	}
 
+	// decrementHandler () {
+	// 	if(this.props.num <= 0) {
+	// 		return false;
+	// 	}
+	// 	this.props.decrement();
+	// }
+
 	decrementHandler () {
 		this.props.decrement();
 	}
 
 
-	render () {
 
+	render () {
  		
 		const num  = this.props.num;
 

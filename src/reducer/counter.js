@@ -3,6 +3,7 @@ const defaultState = {
 	num: 0
 };
 
+
 export default (state = defaultState, action) => {
 
 	const { type } = action;
@@ -15,10 +16,12 @@ export default (state = defaultState, action) => {
 			};
 
 		case DECREMENT:
+
 			return {
-				...state,
-				num: state.num - 1
-			};
+			...state,
+			num: state.num <=0 ? 0 : state.num - 1
+			}
+	
 	}
 
 	return state;
