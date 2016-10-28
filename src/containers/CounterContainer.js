@@ -15,7 +15,6 @@ class CounterContainer extends Component {
 		console.log(this);
 		this.props.increment();
 
-
 	}
 
 	// decrementHandler () {
@@ -30,9 +29,7 @@ class CounterContainer extends Component {
 		this.props.decrement();
 	}
 
-
 	render () {
- 		
 		return (
 			<Counter 
 				num = {this.props.num} 
@@ -42,6 +39,7 @@ class CounterContainer extends Component {
 		);
 	}
 }
+
 
 export default connect(
 	(state) => {

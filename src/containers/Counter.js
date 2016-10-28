@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import { increment, decrement } from '../AC/counter'
 
 class Counter extends Component {
-
-
-
 	render () {
-
-
 		return (
 			<div> 
 				<b>{this.props.num}</b>
