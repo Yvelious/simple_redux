@@ -25,17 +25,20 @@ class CounterContainer extends Component {
 	// }
 
 	decrementHandler () {
-		console.log(this);
 		this.props.decrement();
 	}
 
 	render () {
-		return (
-			<Counter 
-				num = {this.props.num} 
-				incrementHandler={this.incrementHandler.bind(this)} 
-				decrementHandler={::this.decrementHandler} 
-			/>
+		return ( 
+
+			<div> 
+				<Counter num = {this.props.num} />
+				<br/>
+				<br/>
+				<button onClick={::this.incrementHandler}>+</button>
+				<button onClick={this.decrementHandler.bind(this)}>-</button>
+			</div>
+
 		);
 	}
 }
