@@ -1,4 +1,4 @@
-import {TODO, INPUT, ADD, CHANGE_STATUS, ACTIVE, DONE } from '../constants/index';
+import {TODO, INPUT, ADD, CHANGE_STATUS, ACTIVE, DONE, SHOW_FILTER} from '../constants/index';
 
 export function inputTodo (value = '') {
 	return {
@@ -15,5 +15,12 @@ export function changeStatusTodo (id) {
 	return {
 		type: CHANGE_STATUS + TODO,
 		payload: id
+	};
+}
+
+export function showFilterTodo (filter) {
+	return {
+		type: SHOW_FILTER + TODO,
+		filter: filter
 	};
 }

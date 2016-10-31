@@ -1,12 +1,13 @@
-import { INPUT, TODO, ADD, CHANGE_STATUS, ACTIVE, DONE } from '../constants/index';
+import { INPUT, TODO, ADD, CHANGE_STATUS, ACTIVE, DONE, SHOW_ACT, SHOW_FILTER} from '../constants/index';
 const defaultState = {
 	todoList: {},
 	todoFilter: '', // '', 'DONE', 'ACTIVE'
 	tmpValue: ''
+
 };
 
 export default (state = defaultState, action) => {
-	const { type, payload } = action;
+	const { type, payload, filter } = action;
 
 	switch (type) {
 		case INPUT + TODO:
@@ -23,7 +24,7 @@ export default (state = defaultState, action) => {
 			};
 			stateTMP.todoList[id] = {
 				id: id,
-				name: state.tmpValue,
+				name: state.tmpValue, 
 				status: ''
 			};
 			return stateTMP;
@@ -34,6 +35,13 @@ export default (state = defaultState, action) => {
 			};
 			stateTMP1.todoList[payload].status = stateTMP1.todoList[payload].status !== DONE ? DONE : '';
 			return stateTMP1;
+
+		case SHOW_FILTER + TODO:
+			let stateTMP4 = {
+				...state,
+				todoFilter: filter
+			};
+			return stateTMP4;
 	}
 
 	return state;

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { inputTodo, addTodo, changeStatusTodo } from '../AC/todo'
+import { inputTodo, addTodo, changeStatusTodo, showFilterTodo} from '../AC/todo'
 
 class Todo extends Component {
 
@@ -21,27 +21,49 @@ class Todo extends Component {
 		this.props.changeStatusTodo(e.target.id);
 	}
 
+
+	showFilterTodoHandler(filter) {
+		this.props.showFilterTodo(filter);
+	}
+
 	render () {
 
 		const { todo } = this.props;
-		console.log(todo);
-		console.log(this.props);
 
 		if (typeof todo === 'undefined') {
 			return null;
 		}
 
 		const { todoList, todoFilter, tmpValue } = todo;
-		console.log(tmpValue);
 
 		let todoListHTML = [];
-
+	
 		for (let i in todoList) {
-			todoListHTML.push(<li key={todoList[i].id} id={todoList[i].id} onClick={::this.changeStatusTodoHandler} className={todoList[i].status ? 'done' : ''}>
-				{todoList[i].name}
-			</li>);
+			if (todoFilter == 'done') {
+				console.log(todoList[i].status);
+				if(todoList[i].status== "DONE")	{
+					console.log(1);
+					todoListHTML.push( < li key = { todoList[i].id }
+					id = { todoList[i].id }
+					onClick = {::this.changeStatusTodoHandler }
+					className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } < /li>);
+				}
+	
+			} else if (todoFilter == 'active') {
+				if(todoList[i].status== "") {
+					todoListHTML.push( < li key = { todoList[i].id }
+					id = { todoList[i].id }
+					onClick = {::this.changeStatusTodoHandler }
+					className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } < /li>);
+				}
+			} else {
+				todoListHTML.push( < li key = { todoList[i].id }
+				id = { todoList[i].id }
+				onClick = {::this.changeStatusTodoHandler }
+				className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } < /li>);
+				console.log(3);
+			}
 		}
-		console.log(todoListHTML);
 
 		return (
 			<div>
@@ -49,16 +71,16 @@ class Todo extends Component {
 					{todoListHTML}
 				</ul>
 				<div>
-					<b>All</b>,
-					Active,
-					Done
+					<b onClick = {::this.showFilterTodoHandler.bind(this)}>All</b>, 
+					<span onClick = {this.showFilterTodoHandler.bind(this, 'active')}>Active</span>, 
+					<span onClick = {this.showFilterTodoHandler.bind(this, 'done')}>Done</span>
 				</div>
 				<br/>
 				<form onSubmit={::this.addHandler}>
 					<input name="add" value={tmpValue} onChange={::this.inputHandler} />
 					<button type="submit">Add</button>
 				</form>
-			</div>
+			</div> 
 		);
 	}
 }
@@ -71,6 +93,7 @@ export default connect(
 	}, {
 		inputTodo,
 		addTodo,
-		changeStatusTodo
+		changeStatusTodo,
+		showFilterTodo
 	}
 )(Todo);
