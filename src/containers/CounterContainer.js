@@ -25,6 +25,7 @@ class CounterContainer extends Component {
 	// }
 
 	decrementHandler () {
+		console.log(this);
 		this.props.decrement();
 	}
 
