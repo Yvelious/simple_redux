@@ -37,31 +37,33 @@ class Todo extends Component {
 		const { todoList, todoFilter, tmpValue } = todo;
 
 		let todoListHTML = [];
-	
+
 		for (let i in todoList) {
 			if (todoFilter == 'done') {
-				console.log(todoList[i].status);
-				if(todoList[i].status== "DONE")	{
-					console.log(1);
-					todoListHTML.push( < li key = { todoList[i].id }
-					id = { todoList[i].id }
-					onClick = {::this.changeStatusTodoHandler }
-					className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } < /li>);
-				}
-	
+				if (todoList[i].status == "DONE") {
+					todoListHTML.push( < li 
+						key = { todoList[i].id }
+						id = { todoList[i].id }
+						onClick = {::this.changeStatusTodoHandler }
+						className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } 
+					< /li>);
+				}	
 			} else if (todoFilter == 'active') {
-				if(todoList[i].status== "") {
-					todoListHTML.push( < li key = { todoList[i].id }
-					id = { todoList[i].id }
-					onClick = {::this.changeStatusTodoHandler }
-					className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } < /li>);
+				if (todoList[i].status == "") {
+					todoListHTML.push( < li 
+						key = { todoList[i].id }
+						id = { todoList[i].id }
+						onClick = {::this.changeStatusTodoHandler }
+						className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } 
+					< /li>);
 				}
 			} else {
-				todoListHTML.push( < li key = { todoList[i].id }
-				id = { todoList[i].id }
-				onClick = {::this.changeStatusTodoHandler }
-				className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } < /li>);
-				console.log(3);
+				todoListHTML.push( < li 
+					key = { todoList[i].id }
+					id = { todoList[i].id }
+					onClick = {::this.changeStatusTodoHandler }
+					className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } 
+				< /li>);
 			}
 		}
 
@@ -71,7 +73,7 @@ class Todo extends Component {
 					{todoListHTML}
 				</ul>
 				<div>
-					<b onClick = {::this.showFilterTodoHandler.bind(this)}>All</b>, 
+					<b onClick = {this.showFilterTodoHandler.bind(this)}>All</b>, 
 					<span onClick = {this.showFilterTodoHandler.bind(this, 'active')}>Active</span>, 
 					<span onClick = {this.showFilterTodoHandler.bind(this, 'done')}>Done</span>
 				</div>
