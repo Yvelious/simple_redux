@@ -96,6 +96,5 @@ export default connect(
 		inputTodo,
 		addTodo,
 		changeStatusTodo,
-		showFilterTodo
 	}
 )(Todo);
