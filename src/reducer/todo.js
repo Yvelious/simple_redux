@@ -17,17 +17,20 @@ export default (state = defaultState, action) => {
 			};
 
 		case ADD + TODO:
-			const id = (new Date()).getTime();
-			let stateTMP = {
-				...state,
-				tmpValue: ''
-			};
-			stateTMP.todoList[id] = {
-				id: id,
-				name: state.tmpValue, 
-				status: ''
-			};
-			return stateTMP;
+			let stateTMP;
+			if (state.tmpValue) {
+				const id = (new Date()).getTime();
+				stateTMP = {
+					...state,
+					tmpValue: ''
+				};
+				stateTMP.todoList[id] = {
+					id: id,
+					name: state.tmpValue,
+					status: ''
+				};
+			}
+			return stateTMP ? stateTMP : state;
 
 		case CHANGE_STATUS + TODO:
 			let stateTMP1 = { 
