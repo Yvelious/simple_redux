@@ -66,9 +66,6 @@ class Todo extends Component {
 			});
 		}
 
-		console.log(todoListHTML.length);
-		let t = todoListHTML.length;
-
 		return (
 			<div>
 				<select name="" id="" onChange={::this.showBySortHandler} disabled={todoListHTML.length ? '' : 'disabled'} >
