@@ -33,7 +33,7 @@ export default (state = defaultState, action) => {
 			return stateTMP ? stateTMP : state;
 
 		case CHANGE_STATUS + TODO:
-			let stateTMP1 = { 
+			let stateTMP1 = {
 				...state,
 			};
 			stateTMP1.todoList[payload].status = stateTMP1.todoList[payload].status !== DONE ? DONE : '';

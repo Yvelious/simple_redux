@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { inputTodo, addTodo, changeStatusTodo, showFilterTodo} from '../AC/todo'
+import { inputTodo, addTodo, changeStatusTodo, showFilterTodo} from '../AC/todo';
 import { ACTIVE, DONE } from '../constants/index';
 
 class Todo extends Component {
@@ -53,6 +53,7 @@ class Todo extends Component {
 
 		return (
 			<div>
+
 				<ul>
 					{todoListHTML}
 				</ul>
