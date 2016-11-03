@@ -59,10 +59,11 @@ class Todo extends Component {
 
 		if (todoSort != '') {
 			todoListHTML.sort(function(a, b){
-				let x = a.props.children.toLowerCase(),
-				     y = b.props.children.toLowerCase();
+				let x = a.props.children,
+				     y = b.props.children;
 			
-				return  todoSort == ALPHA_ORDER ? (x < y ? -1 : x > y ? 1 : 0) : (x >y ? -1 : x < y ? 1 : 0);
+				return todoSort == ALPHA_ORDER ? x.localeCompare(y) : y.localeCompare(x);
+			;
 			});
 		}
 
