@@ -21,6 +21,8 @@ export function changeStatusTodo (id) {
 export function showFilterTodo (filter) {
 	return {
 		type: SHOW_FILTER + TODO,
-		filter: filter
+		payload: {
+			filter
+		}
 	};
 }

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { inputTodo, addTodo, changeStatusTodo, showFilterTodo} from '../AC/todo'
+import { ACTIVE, DONE } from '../constants/index';
 
 class Todo extends Component {
 
@@ -22,8 +23,8 @@ class Todo extends Component {
 	}
 
 
-	showFilterTodoHandler(filter) {
-		this.props.showFilterTodo(filter);
+	showFilterTodoHandler(e) {
+		this.props.showFilterTodo(e.target.value);
 	}
 
 	render () {
@@ -39,31 +40,14 @@ class Todo extends Component {
 		let todoListHTML = [];
 
 		for (let i in todoList) {
-			if (todoFilter == 'done') {
-				if (todoList[i].status == "DONE") {
-					todoListHTML.push( < li 
-						key = { todoList[i].id }
-						id = { todoList[i].id }
-						onClick = {::this.changeStatusTodoHandler }
-						className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } 
-					< /li>);
-				}	
-			} else if (todoFilter == 'active') {
-				if (todoList[i].status == "") {
-					todoListHTML.push( < li 
-						key = { todoList[i].id }
-						id = { todoList[i].id }
-						onClick = {::this.changeStatusTodoHandler }
-						className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } 
-					< /li>);
-				}
-			} else {
-				todoListHTML.push( < li 
+			if (todoFilter == DONE && todoList[i].status == DONE || todoFilter == ACTIVE && todoList[i].status == "" || !todoFilter) {
+				todoListHTML.push( <li
 					key = { todoList[i].id }
 					id = { todoList[i].id }
 					onClick = {::this.changeStatusTodoHandler }
-					className = { todoList[i].status ? 'done' : '' } > { todoList[i].name } 
-				< /li>);
+					className = { todoList[i].status ? 'done' : '' }>
+					{ todoList[i].name }
+				</li>);
 			}
 		}
 
@@ -73,9 +57,9 @@ class Todo extends Component {
 					{todoListHTML}
 				</ul>
 				<div>
-					<b onClick = {this.showFilterTodoHandler.bind(this)}>All</b>, 
-					<span onClick = {this.showFilterTodoHandler.bind(this, 'active')}>Active</span>, 
-					<span onClick = {this.showFilterTodoHandler.bind(this, 'done')}>Done</span>
+					<button onClick = {::this.showFilterTodoHandler} className={todoFilter ? '' : 'active'} value={''}>All</button>,
+					<button onClick = {::this.showFilterTodoHandler} className={todoFilter == ACTIVE ? 'active' : ''} value={ACTIVE}>Active</button>,
+					<button onClick = {::this.showFilterTodoHandler} className={todoFilter == DONE ? 'active' : ''} value={DONE}>Done</button>
 				</div>
 				<br/>
 				<form onSubmit={::this.addHandler}>

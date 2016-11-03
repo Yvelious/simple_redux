@@ -7,7 +7,7 @@ const defaultState = {
 };
 
 export default (state = defaultState, action) => {
-	const { type, payload, filter } = action;
+	const { type, payload } = action;
 
 	switch (type) {
 		case INPUT + TODO:
@@ -40,11 +40,10 @@ export default (state = defaultState, action) => {
 			return stateTMP1;
 
 		case SHOW_FILTER + TODO:
-			let stateTMP4 = {
+			return {
 				...state,
-				todoFilter: filter
+				todoFilter: payload.filter
 			};
-			return stateTMP4;
 	}
 
 	return state;
