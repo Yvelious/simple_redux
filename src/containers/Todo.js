@@ -63,7 +63,6 @@ class Todo extends Component {
 				     y = b.props.children;
 			
 				return todoSort == ALPHA_ORDER ? x.localeCompare(y) : y.localeCompare(x);
-			;
 			});
 		}
 
