@@ -41,11 +41,8 @@ class Todo extends Component {
 		}
 
 		const { todoList, todoFilter, tmpValue, todoSort } = todo;
-		console.log("t" + todoSort);
 
 		let todoListHTML = [];
-		let todoListSort = [];
-
 
 
 		for (let i in todoList) {
@@ -61,7 +58,6 @@ class Todo extends Component {
 		}
 
 		if (todoSort != '') {
-
 			todoListHTML.sort(function(a, b){
 				let x = a.props.children.toLowerCase(),
 				     y = b.props.children.toLowerCase();
@@ -70,10 +66,12 @@ class Todo extends Component {
 			});
 		}
 
-		
+		console.log(todoListHTML.length);
+		let t = todoListHTML.length;
+
 		return (
 			<div>
-				<select name="" id="" onChange={::this.showBySortHandler} >
+				<select name="" id="" onChange={::this.showBySortHandler} disabled={todoListHTML.length ? '' : 'disabled'} >
 					<option value=''>по дефолту</option>
 					<option value={ALPHA_ORDER}>По алфавиту</option>
 					<option value={OMEGA_ORDER}>По алфавиту в обратном порядке</option>
