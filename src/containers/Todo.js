@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { inputTodo, addTodo, changeStatusTodo, showFilterTodo} from '../AC/todo';
-import { ACTIVE, DONE } from '../constants/index';
+import { inputTodo, addTodo, changeStatusTodo, showFilterTodo, showBySort} from '../AC/todo';
+import { ACTIVE, DONE,  ALPHA_ORDER, OMEGA_ORDER } from '../constants/index';
 
 class Todo extends Component {
 
@@ -27,6 +27,11 @@ class Todo extends Component {
 		this.props.showFilterTodo(e.target.value);
 	}
 
+	showBySortHandler(e) {
+		console.log(e.target.value);
+		this.props.showBySort(e.target.value);
+	}
+
 	render () {
 
 		const { todo } = this.props;
@@ -35,9 +40,13 @@ class Todo extends Component {
 			return null;
 		}
 
-		const { todoList, todoFilter, tmpValue } = todo;
+		const { todoList, todoFilter, tmpValue, todoSort } = todo;
+		console.log("t" + todoSort);
 
 		let todoListHTML = [];
+		let todoListSort = [];
+
+
 
 		for (let i in todoList) {
 			if (todoFilter == DONE && todoList[i].status == DONE || todoFilter == ACTIVE && todoList[i].status == "" || !todoFilter) {
@@ -51,8 +60,24 @@ class Todo extends Component {
 			}
 		}
 
+		if (todoSort != '') {
+
+			todoListHTML.sort(function(a, b){
+				let x = a.props.children.toLowerCase(),
+				     y = b.props.children.toLowerCase();
+			
+				return  todoSort == ALPHA_ORDER ? (x < y ? -1 : x > y ? 1 : 0) : (x >y ? -1 : x < y ? 1 : 0);
+			});
+		}
+
+		
 		return (
 			<div>
+				<select name="" id="" onChange={::this.showBySortHandler} >
+					<option value=''>по дефолту</option>
+					<option value={ALPHA_ORDER}>По алфавиту</option>
+					<option value={OMEGA_ORDER}>По алфавиту в обратном порядке</option>
+				</select>
 
 				<ul>
 					{todoListHTML}
@@ -81,6 +106,7 @@ export default connect(
 		inputTodo,
 		addTodo,
 		changeStatusTodo,
-		showFilterTodo
+		showFilterTodo,
+		showBySort
 	}
 )(Todo);

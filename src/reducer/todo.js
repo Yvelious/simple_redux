@@ -1,8 +1,9 @@
-import { INPUT, TODO, ADD, CHANGE_STATUS, ACTIVE, DONE, SHOW_ACT, SHOW_FILTER} from '../constants/index';
+import { INPUT, TODO, ADD, CHANGE_STATUS, ACTIVE, DONE, SHOW_ACT, SHOW_FILTER, SHOW_SORT,  ALPHA_ORDER, OMEGA_ORDER} from '../constants/index';
 const defaultState = {
 	todoList: {},
 	todoFilter: '', // '', 'DONE', 'ACTIVE'
-	tmpValue: ''
+	tmpValue: '',
+	todoSort: ''
 
 };
 
@@ -43,6 +44,11 @@ export default (state = defaultState, action) => {
 			return {
 				...state,
 				todoFilter: payload.filter
+			};
+		case SHOW_SORT + TODO:
+			return {
+				...state,
+				todoSort: payload.todosort
 			};
 	}
 

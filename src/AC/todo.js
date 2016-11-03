@@ -1,4 +1,4 @@
-import {TODO, INPUT, ADD, CHANGE_STATUS, ACTIVE, DONE, SHOW_FILTER} from '../constants/index';
+import {TODO, INPUT, ADD, CHANGE_STATUS, ACTIVE, DONE, SHOW_FILTER, SHOW_SORT, ALPHA_ORDER, OMEGA_ORDER} from '../constants/index';
 
 export function inputTodo (value = '') {
 	return {
@@ -23,6 +23,15 @@ export function showFilterTodo (filter) {
 		type: SHOW_FILTER + TODO,
 		payload: {
 			filter
+		}
+	};
+}
+
+export function showBySort (todosort) {
+	return {
+		type: SHOW_SORT + TODO,
+		payload: {
+			todosort
 		}
 	};
 }
