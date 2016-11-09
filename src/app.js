@@ -12,8 +12,8 @@ render(
 <Provider store={store}>
   <Router history = { browserHistory }>
        <Route path="/" component={App} >
-           	 <Route path="todo" component={pageTodo} />
-       	 <Route path="counter" component={pageCounter} />
+		   <Route path="todo/(:filterValue)" component={pageTodo} />
+		   <Route path="counter" component={pageCounter} />
        </Route> 
   </Router>
 </Provider>, document.getElementById('root')); 

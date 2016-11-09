@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { inputTodo, addTodo, changeStatusTodo, showFilterTodo, showBySort} from '../AC/todo';
 import { ACTIVE, DONE,  ALPHA_ORDER, OMEGA_ORDER } from '../constants/index';
+import { Link } from 'react-router';
 
 class Todo extends Component {
 
@@ -34,7 +35,7 @@ class Todo extends Component {
 
 	render () {
 
-		const { todo } = this.props;
+		const { todo, filterValue } = this.props;
 
 		if (typeof todo === 'undefined') {
 			return null;
@@ -60,15 +61,15 @@ class Todo extends Component {
 		if (todoSort != '') {
 			todoListHTML.sort(function(a, b){
 				let x = a.props.children,
-				     y = b.props.children;
-			
+					y = b.props.children;
+
 				return todoSort == ALPHA_ORDER ? x.localeCompare(y) : y.localeCompare(x);
 			});
 		}
 
 		return (
 			<div>
-				<select name="" id="" onChange={::this.showBySortHandler} disabled={todoListHTML.length ? '' : 'disabled'} >
+				<select name="" id="" onChange={::this.showBySortHandler} disabled={todoListHTML.length ? '' : 'disabled'} defaultValue={todoSort}>
 					<option value=''>по дефолту</option>
 					<option value={ALPHA_ORDER}>По алфавиту</option>
 					<option value={OMEGA_ORDER}>По алфавиту в обратном порядке</option>
@@ -81,6 +82,13 @@ class Todo extends Component {
 					<button onClick = {::this.showFilterTodoHandler} className={todoFilter ? '' : 'active'} value={''}>All</button>,
 					<button onClick = {::this.showFilterTodoHandler} className={todoFilter == ACTIVE ? 'active' : ''} value={ACTIVE}>Active</button>,
 					<button onClick = {::this.showFilterTodoHandler} className={todoFilter == DONE ? 'active' : ''} value={DONE}>Done</button>
+
+					<br/>
+					<br/>
+					<br/>
+					<Link to={`/todo/`} activeStyle={{'color':'#f00'}}>All</Link><br/>
+					<Link to={`/todo/${ACTIVE}`} activeStyle={{'color':'#f00'}}>{ACTIVE}</Link><br/>
+					<Link to={`/todo/${DONE}`} activeStyle={{'color':'#f00'}}>{DONE}</Link>
 				</div>
 				<br/>
 				<form onSubmit={::this.addHandler}>

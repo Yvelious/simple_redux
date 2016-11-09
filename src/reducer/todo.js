@@ -45,6 +45,7 @@ export default (state = defaultState, action) => {
 				...state,
 				todoFilter: payload.filter
 			};
+
 		case SHOW_SORT + TODO:
 			return {
 				...state,
