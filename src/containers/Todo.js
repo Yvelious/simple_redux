@@ -5,7 +5,7 @@ import { ACTIVE, DONE,  ALPHA_ORDER, OMEGA_ORDER } from '../constants/index';
 
 class Todo extends Component {
 
-	static propTypes = {
+	static propTypes = { 
 
 	};
 

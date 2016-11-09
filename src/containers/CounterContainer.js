@@ -8,7 +8,7 @@ class CounterContainer extends Component {
 	static propTypes = {
 		num: PropTypes.number,
 		increment: PropTypes.func,
-		decrement: PropTypes.func
+		decrement: PropTypes.func 
 	};
 
 	incrementHandler () {

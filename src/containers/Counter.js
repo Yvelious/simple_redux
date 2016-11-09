@@ -5,7 +5,7 @@ import { increment, decrement } from '../AC/counter'
 class Counter extends Component {
 	render () {
 		return (
-			<b>{this.props.num}</b>		
+			<b>{this.props.num}</b>		 
 		);
 	}
 }

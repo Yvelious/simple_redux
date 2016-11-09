@@ -1,24 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import store from '../store/index';
 import { Provider } from 'react-redux';
-import CounterContainer from '../containers/CounterContainer';
-import Todo from '../containers/Todo';
+import { Link } from 'react-router';
 
 class App extends Component {
 	render () {
 		return (
-			<Provider store={store}>
-			<div>
-				<CounterContainer />
-				<br />
-				<br />
-				<br />
-				<br /> 
-				<Todo />
-			</div>
-			</Provider>
+			   <div>
+		      	<Link to="todo" activeStyle={{color:'#666'}} >todo</Link>
+			   	<br />
+			   	<br />
+			   	<Link to="counter" activeStyle={{color:'#666'}} >counter</Link>
+			   	<br />
+			   	<br />
+			   	
+		          {this.props.children}
+		        </div>
 		);
 	}
-}
+} 
 
 export default App;
