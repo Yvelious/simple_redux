@@ -49,7 +49,7 @@ export default (state = defaultState, action) => {
 		case SHOW_SORT + TODO:
 			return {
 				...state,
-				todoSort: payload.todosort
+				todoSort: payload.todosort  
 			};
 	}
 

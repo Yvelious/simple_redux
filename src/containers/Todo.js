@@ -47,14 +47,16 @@ class Todo extends Component {
 
 
 		for (let i in todoList) {
-			if (todoFilter == DONE && todoList[i].status == DONE || todoFilter == ACTIVE && todoList[i].status == "" || !todoFilter) {
-				todoListHTML.push( <li
+			if (filterValue == DONE && todoList[i].status == DONE || filterValue == ACTIVE  && todoList[i].status == "" || !filterValue) {
+			
+					todoListHTML.push( <li
 					key = { todoList[i].id }
 					id = { todoList[i].id }
 					onClick = {::this.changeStatusTodoHandler }
 					className = { todoList[i].status ? 'done' : '' }>
 					{ todoList[i].name }
 				</li>);
+		
 			}
 		}
 

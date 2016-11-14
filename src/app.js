@@ -12,7 +12,7 @@ render(
 <Provider store={store}>
   <Router history = { browserHistory }>
        <Route path="/" component={App} >
-		   <Route path="todo/(:filterValue)" component={pageTodo} />
+		   <Route path="todo(/:filterValue)" component={pageTodo} /> 
 		   <Route path="counter" component={pageCounter} />
        </Route> 
   </Router>
