@@ -60,14 +60,17 @@ class Todo extends Component {
 			}
 		}
 
-		if (todoSort != '') {
-			todoListHTML.sort(function(a, b){
-				let x = a.props.children,
-					y = b.props.children;
 
-				return todoSort == ALPHA_ORDER ? x.localeCompare(y) : y.localeCompare(x);
-			});
-		}
+	
+
+		// if (todoSort != '') {
+		// 	todoListHTML.sort(function(a, b){
+		// 		let x = a.props.children,
+		// 			y = b.props.children;
+
+		// 		return todoSort == ALPHA_ORDER ? x.localeCompare(y) : y.localeCompare(x);
+		// 	});
+		// }
 
 		return (
 			<div>

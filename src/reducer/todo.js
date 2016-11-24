@@ -7,6 +7,27 @@ const defaultState = {
 
 };
 
+function sortObj (obj, type) {
+	var temp_array = [];
+	for (var key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			temp_array.push(obj[key]);
+		}
+	}
+
+	if (typeof type === 'function') {
+		temp_array.sort(type);
+	}  else {
+		temp_array.sort();
+	}
+	var temp_obj = {};
+	for (var i = 0; i < temp_array.length; i++) {
+		temp_obj[temp_array[i]] = temp_array[i];
+	}
+	return temp_obj;
+};
+
+
 export default (state = defaultState, action) => {
 	const { type, payload } = action;
 
@@ -49,7 +70,21 @@ export default (state = defaultState, action) => {
 		case SHOW_SORT + TODO:
 			return {
 				...state,
-				todoSort: payload.todosort  
+				todoSort: payload.todosort,
+				todoList: function(){
+					return sortObj(state.todoList, 
+						function(a,b) {
+							var x = a.name,
+							     y = b.name;
+							if(payload.todosort =='') {
+								x = a.id;
+								y = b.id;
+								return x-y;
+							}  
+							return payload.todosort == ALPHA_ORDER  ? x.localeCompare(y) : y.localeCompare(x);
+						}
+					)
+				}()
 			};
 	}
 
