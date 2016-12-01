@@ -22,7 +22,7 @@ function sortObj (obj, type) {
 	}
 	var temp_obj = {};
 	for (var i = 0; i < temp_array.length; i++) {
-		temp_obj[temp_array[i]] = temp_array[i];
+		temp_obj[temp_array[i].id] = temp_array[i];
 	}
 	return temp_obj;
 };
